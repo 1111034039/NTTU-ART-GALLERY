@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台東大學藝術品展示</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+            font-family: Arial, sans-serif;
+        }
+        
+        .header {
+            background-color: #000000;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .logo {
+            color: #ff9000;
+            font-size: 36px;
+            font-weight: bold;
+        }
+        
+        .nav-bar {
+            background-color: #1b1b1b;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .nav-button {
+            background-color: #ff9000;
+            color: #000000;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .content {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #1b1b1b;
+            border-radius: 10px;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .art-placeholder {
+            background-color: #2d2d2d;
+            height: 200px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff9000;
+        }
+        
+        .age-verify-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.98);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .age-verify-content {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            max-width: 600px;
+        }
+
+        .age-verify-content h2 {
+            color: #ff9000;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .age-verify-content p {
+            margin: 20px 0;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .age-verify-buttons {
+            margin-top: 30px;
+        }
+
+        .age-verify-button {
+            background-color: #ff9000;
+            color: black;
+            border: none;
+            padding: 15px 40px;
+            margin: 0 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .age-verify-button.no {
+            background-color: #666;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="ageVerifyModal" class="age-verify-overlay">
+        <div class="age-verify-content">
+            <h2>年齡確認</h2>
+            <p>您必須年滿 18 歲才能瀏覽此網站的內容。</p>
+            <p>請確認您的年齡。</p>
+            <div class="age-verify-buttons">
+                <button class="age-verify-button" onclick="verifyAge(true)">我已年滿 18 歲</button>
+                <button class="age-verify-button no" onclick="verifyAge(false)">我未滿 18 歲</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="header">
+        <div class="logo">NTTU ART GALLERY</div>
+    </div>
+    
+    <div class="nav-bar">
+        <button class="nav-button">所有作品</button>
+        <button class="nav-button">最新展品</button>
+        <button class="nav-button">特色藝術</button>
+        <button class="nav-button">關於我們</button>
+    </div>
+    
+    <div class="content">
+        <div class="gallery">
+            <div class="art-placeholder">藝術品展示位置 1</div>
+            <div class="art-placeholder">藝術品展示位置 2</div>
+            <div class="art-placeholder">藝術品展示位置 3</div>
+            <div class="art-placeholder">藝術品展示位置 4</div>
+        </div>
+    </div>
+</body>
+</html>
+
+    <script>
+        function verifyAge(isAdult) {
+            if (isAdult) {
+                document.getElementById('ageVerifyModal').style.display = 'none';
+            } else {
+                window.location.href = 'https://www.google.com';
+            }
+        }
+    </script>
