@@ -270,12 +270,12 @@
 <div class="content">
     <div class="gallery">
         <div class="art-item" onclick="showDetails('art1')">
-            <img src="images/photo1.jpg" alt="方外人間" class="art-image">
+            <img src="photo1.jpg" alt="方外人間" class="art-image">
             <h3 class="art-title">《方外人間》</h3>
         </div>
         
         <div class="art-item" onclick="showDetails('art2')">
-            <img src="images/photo2.jpg" alt="智慧磁場" class="art-image">
+            <img src="photo2.jpg" alt="智慧磁場" class="art-image">
             <h3 class="art-title">《智慧磁場》</h3>
         </div>
     </div>
@@ -312,7 +312,7 @@
     function showDetails(artId) {
         const art = artDetails[artId];
         document.getElementById('modalContent').innerHTML = `
-            <img src="images/photo${artId.slice(-1)}.jpg" alt="${art.title}" class="modal-image">
+            <img src="photo${artId.slice(-1)}.jpg" alt="${art.title}" class="modal-image">
             <h2 style="color: #ff9000; margin-bottom: 20px;">${art.title}</h2>
             <div style="color: #cccccc; margin-bottom: 20px;">${art.info}</div>
             <p style="line-height: 1.6;">${art.description}</p>
