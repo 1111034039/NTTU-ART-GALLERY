@@ -176,14 +176,6 @@
         <button class="nav-button">關於我們</button>
     </div>
     
-    <div class="content">
-        <div class="gallery">
-            <div class="art-placeholder">藝術品展示位置 1</div>
-            <div class="art-placeholder">藝術品展示位置 2</div>
-            <div class="art-placeholder">藝術品展示位置 3</div>
-            <div class="art-placeholder">藝術品展示位置 4</div>
-        </div>
-    </div>
 </body>
 </html>
 
@@ -196,3 +188,139 @@
             }
         }
     </script>
+
+<style>
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+        padding: 20px;
+    }
+    
+    .art-item {
+        background-color: #2d2d2d;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: transform 0.3s;
+        position: relative;
+    }
+    
+    .art-item:hover {
+        transform: scale(1.02);
+    }
+    
+    .art-image {
+        width: 100%;
+        height: 350px;
+        object-fit: cover;
+    }
+    
+    .art-title {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0,0,0,0.8);
+        color: #ff9000;
+        padding: 15px;
+        margin: 0;
+        font-size: 20px;
+    }
+    
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.95);
+        z-index: 1001;
+    }
+    
+    .modal-content {
+        position: relative;
+        max-width: 800px;
+        margin: 50px auto;
+        background: #2d2d2d;
+        padding: 30px;
+        border-radius: 10px;
+        color: #ffffff;
+    }
+    
+    .modal-image {
+        width: 100%;
+        height: 400px;
+        object-fit: contain;
+        margin-bottom: 20px;
+        background-color: #1b1b1b;
+        border-radius: 5px;
+    }
+    
+    .close-btn {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        color: #ff9000;
+        font-size: 30px;
+        cursor: pointer;
+    }
+</style>
+
+<div class="content">
+    <div class="gallery">
+        <div class="art-item" onclick="showDetails('art1')">
+            <img src="images/photo1.jpg" alt="方外人間" class="art-image">
+            <h3 class="art-title">《方外人間》</h3>
+        </div>
+        
+        <div class="art-item" onclick="showDetails('art2')">
+            <img src="images/photo2.jpg" alt="智慧磁場" class="art-image">
+            <h3 class="art-title">《智慧磁場》</h3>
+        </div>
+    </div>
+</div>
+
+<!-- 作品詳情彈窗 -->
+<div id="artModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <div id="modalContent"></div>
+    </div>
+</div>
+
+<script>
+    const artDetails = {
+        art1: {
+            title: '《方外人間》',
+            info: `作品主題：向．度<br>
+                  位置：理工學院 南棟 走廊壁面<br>
+                  尺寸：300cm x 400cm x 10cm<br>
+                  創作者：吳炫三工作室`,
+            description: '「富比士」雜誌發行人 馬坎. 富比士曾說：「教育的目的是將無知的心，轉化為開放的心靈。」這是也面對未來社會的首要生存法則。本件作品從四面八方都可成為欣賞的關注點，正是要傳達「思考不該受限於過去經驗及所學之框架」，鼓勵學子時時刻刻保持開放的心胸，勇於打破窠臼、積極吸收新知，從各種不同角度去探究，方能永續創新，發現「方外人間」。'
+        },
+        art2: {
+            title: '《智慧磁場》',
+            info: `作品主題：向．度<br>
+                  位置：理工學院及師範學院街廓間 陽光草坪上<br>
+                  尺寸：230cm x 230cm x 400cm<br>
+                  創作者：吳炫三工作室`,
+            description: '研究指出鳥類透過磁場在茫茫大海中識別方向；狐狸運用磁場，追蹤藏身於皚皚白雪下的獵物裹腹。而人們面對這樣極速變化的時代，又該如何掌握自己未來的方向呢？作品《智慧磁場》闡述如何從「時間」、「自我」、「環境」等三個面向，幫自己導向正向的智慧磁場。透過「妥善時間管理」、「不斷充實自我」、「掌握社會脈動」等的積極作為，克服黑暗的負面意識，開發出內在的光明能量，精準地找出正確軌道，攜手構築一個滿載而歸的圓滿人生。'
+        }
+    };
+
+    function showDetails(artId) {
+        const art = artDetails[artId];
+        document.getElementById('modalContent').innerHTML = `
+            <img src="images/photo${artId.slice(-1)}.jpg" alt="${art.title}" class="modal-image">
+            <h2 style="color: #ff9000; margin-bottom: 20px;">${art.title}</h2>
+            <div style="color: #cccccc; margin-bottom: 20px;">${art.info}</div>
+            <p style="line-height: 1.6;">${art.description}</p>
+        `;
+        document.getElementById('artModal').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('artModal').style.display = 'none';
+    }
+</script>
